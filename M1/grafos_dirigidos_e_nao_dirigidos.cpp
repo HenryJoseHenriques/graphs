@@ -23,29 +23,12 @@ void liberarMemoria(int **matriz, int tam){
 }
 
 void preecherDirigida(int **matriz, int tam){
-    bool trava = true;
+    //bool trava = true;
     int i,j;
-    while(trava){
-        cout << "\nIndique a conexão desejada da linha/coluna.(-1 para finalizar)\n";
-        cin >> i;
-        if(i <= -1) break;
-        i = i-1;
-        
-        cout << "\nIndique a conexão desejada da coluna.(-1 para finalizar)\n";
-        cin >> j;
-        if(j <= -1) break;
-        j = j-1;
-        
-        matriz[i][j] = 1;
-        
-    }
-}
-
-void preecherNaoDirigida(int **matriz, int tam){
-    bool trava = true;
-    int i,j;
-    while(trava){
-        cout << "\nIndique a conexão desejada da linha/coluna.(-1 para finalizar)\n";
+    //while(trava){
+    while(true){
+        cout << "\nIndique a conexão desejada da linha.(-1 para finalizar)\n";
+        cout << "\nIndique a conexão desejada da linha.(-1 para finalizar)\n";
         cin >> i;
         if(i <= -1) break;
         i = i-1;
@@ -57,6 +40,25 @@ void preecherNaoDirigida(int **matriz, int tam){
         
         matriz[i][j] = 1;
         matriz[j][i] = 1;
+    }
+}
+
+void preecherNaoDirigida(int **matriz, int tam){
+    //bool trava = true;
+    int i,j;
+    //while(trava){
+    while(true){
+        cout << "\nIndique a conexão desejada da linha.(-1 para finalizar)\n";
+        cin >> i;
+        if(i <= -1) break;
+        i = i-1;
+        
+        cout << "\nIndique a conexão desejada da coluna.(-1 para finalizar)\n";
+        cin >> j;
+        if(j <= -1) break;
+        j = j-1;
+        
+        matriz[i][j] = 1;
     }
 }
 
