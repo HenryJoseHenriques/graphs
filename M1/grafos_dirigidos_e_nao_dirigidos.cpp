@@ -28,7 +28,6 @@ void preecherDirigida(int **matriz, int tam){
     //while(trava){
     while(true){
         cout << "\nIndique a conexão desejada da linha.(-1 para finalizar)\n";
-        cout << "\nIndique a conexão desejada da linha.(-1 para finalizar)\n";
         cin >> i;
         if(i <= -1) break;
         i = i-1;
