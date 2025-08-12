@@ -22,7 +22,7 @@ void liberarMemoria(int **matriz, int tam){
     delete[] matriz;
 }
 
-void preecherdirigida(int **matriz, int tam){
+void preecherDirigida(int **matriz, int tam){
     bool trava = true;
     int i,j;
     while(trava){
@@ -41,7 +41,7 @@ void preecherdirigida(int **matriz, int tam){
     }
 }
 
-void preecherNdirigida(int **matriz, int tam){
+void preecherNaoDirigida(int **matriz, int tam){
     bool trava = true;
     int i,j;
     while(trava){
@@ -73,12 +73,13 @@ void preencherMatriz(int **matriz, int tam){
     char respodrg;
     cout << "\nÉ dirigido?(S ou N)\n";
     cin >> respodrg;
+    respodrg = toupper(respodrg);
     if(respodrg != 'S' && respodrg != 'N'){
         cout << "\nResposta não aceita.\n";
     }else if(respodrg == 'S'){
-        preecherdirigida(matriz, tam);
+        preecherDirigida(matriz, tam);
     }else if(respodrg == 'N'){
-        preecherNdirigida(matriz, tam);
+        preecherNaoDirigida(matriz, tam);
     }
 }
 
