@@ -27,12 +27,12 @@ void preecherDirigida(int **matriz, int tam){
     int i,j;
     //while(trava){
     while(true){
-        cout << "\nIndique a conexão desejada da linha.(-1 para finalizar)\n";
+        cout << "\nIndique a conexao desejada da linha.(-1 para finalizar)\n";
         cin >> i;
         if(i <= -1) break;
         i = i-1;
         
-        cout << "\nIndique a conexão desejada da coluna.(-1 para finalizar)\n";
+        cout << "\nIndique a conexao desejada da coluna.(-1 para finalizar)\n";
         cin >> j;
         if(j <= -1) break;
         j = j-1;
@@ -47,12 +47,12 @@ void preecherNaoDirigida(int **matriz, int tam){
     int i,j;
     //while(trava){
     while(true){
-        cout << "\nIndique a conexão desejada da linha.(-1 para finalizar)\n";
+        cout << "\nIndique a conexao desejada da linha.(-1 para finalizar)\n";
         cin >> i;
         if(i <= -1) break;
         i = i-1;
         
-        cout << "\nIndique a conexão desejada da coluna.(-1 para finalizar)\n";
+        cout << "\nIndique a conexao desejada da coluna.(-1 para finalizar)\n";
         cin >> j;
         if(j <= -1) break;
         j = j-1;
@@ -72,11 +72,11 @@ void exibirMatriz(int **matriz, int tam){
 
 void preencherMatriz(int **matriz, int tam){
     char respodrg;
-    cout << "\nÉ dirigido?(S ou N)\n";
+    cout << "\nTrata-se de uma matriz dirigido?(S ou N)\n";
     cin >> respodrg;
     respodrg = toupper(respodrg);
     if(respodrg != 'S' && respodrg != 'N'){
-        cout << "\nResposta não aceita.\n";
+        cout << "\nResposta invalida.\n";
     }else if(respodrg == 'S'){
         preecherDirigida(matriz, tam);
     }else if(respodrg == 'N'){
