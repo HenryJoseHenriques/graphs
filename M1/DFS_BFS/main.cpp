@@ -19,8 +19,10 @@ int main()
     bool *visited = initVisited(tam);
     int v;
     callDFS(matriz,tam, visited);
+    free(visited);
+
+
 
     free(matriz,tam);
-    free(visited);
     return 0;
 }
