@@ -1,7 +1,14 @@
-#include <iostream>
-using namespace std;
+//#include <iostream>
+//using namespace std;
 
-int **criarMatriz(int tam){
+int **createMatrix(int tam);
+void freeMemory(int **matriz, int tam);
+void Directed(int **matriz, int tam);
+void NoDirected(int **matriz, int tam);
+void printMatrix(int **matriz, int tam);
+void fillMatrix(int **matriz, int tam);
+
+int **createMatrix(int tam){
     int **matriz;
     matriz = new int*[tam];
     for(int i = 0; i < tam;i++){
@@ -15,14 +22,14 @@ int **criarMatriz(int tam){
     return matriz;
 }
 
-void liberarMemoria(int **matriz, int tam){
+void freeMemory(int **matriz, int tam){
     for(int i = 0; i < tam;i++){
         delete [] matriz[i];
     }
     delete[] matriz;
 }
 
-void preecherDirigida(int **matriz, int tam){
+void Directed(int **matriz, int tam){
     //bool trava = true;
     int i,j;
     //while(trava){
@@ -42,7 +49,7 @@ void preecherDirigida(int **matriz, int tam){
     }
 }
 
-void preecherNaoDirigida(int **matriz, int tam){
+void NoDirected(int **matriz, int tam){
     //bool trava = true;
     int i,j;
     //while(trava){
@@ -61,7 +68,7 @@ void preecherNaoDirigida(int **matriz, int tam){
     }
 }
 
-void exibirMatriz(int **matriz, int tam){
+void printMatrix(int **matriz, int tam){
     for(int i = 0; i < tam; i++){
         for(int j = 0; j < tam; j++){
             cout << matriz[i][j] << " ";
@@ -70,7 +77,7 @@ void exibirMatriz(int **matriz, int tam){
     }
 }
 
-void preencherMatriz(int **matriz, int tam){
+void fillMatrix(int **matriz, int tam){
     char respodrg;
     cout << "\nTrata-se de uma matriz dirigido?(S ou N)\n";
     cin >> respodrg;
@@ -78,8 +85,8 @@ void preencherMatriz(int **matriz, int tam){
     if(respodrg != 'S' && respodrg != 'N'){
         cout << "\nResposta invalida.\n";
     }else if(respodrg == 'S'){
-        preecherDirigida(matriz, tam);
+        Directed(matriz, tam);
     }else if(respodrg == 'N'){
-        preecherNaoDirigida(matriz, tam);
+        NoDirected(matriz, tam);
     }
 }

@@ -1,6 +1,8 @@
 #include <iostream>
-#include "DFS.hpp"
 using namespace std;
+#include "vertex.hpp"
+#include "DFS.hpp"
+#include "BFS.hpp"
 
 int main()
 {
@@ -8,21 +10,16 @@ int main()
     int tam;
     cout << "\nEscreva o tamanho da matriz:\n";
     cin >> tam;
-    matriz = criarMatriz(tam);
+    matriz = createMatrix(tam);
     
-    preencherMatriz(matriz,tam);
-    exibirMatriz(matriz,tam);
+    fillMatrix(matriz,tam);
+    printMatrix(matriz,tam);
 
     bool *visited = initVisited(tam);
     int v;
-    //DFS
     callDFS(matriz,tam, visited);
 
-
-    /*BFS*/
-    //queue<int> fila;
-    //initQueue(fila);
-
-    liberarMemoria(matriz,tam);
+    freeMemory(matriz,tam);
+    freeVisited(visited);
     return 0;
 }
