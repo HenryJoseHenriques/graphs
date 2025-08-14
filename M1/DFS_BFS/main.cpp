@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+#include "graphs_base.hpp"
 #include "vertex.hpp"
 #include "DFS.hpp"
 #include "BFS.hpp"
@@ -19,7 +20,7 @@ int main()
     int v;
     callDFS(matriz,tam, visited);
 
-    freeMemory(matriz,tam);
-    freeVisited(visited);
+    free(matriz,tam);
+    free(visited);
     return 0;
 }

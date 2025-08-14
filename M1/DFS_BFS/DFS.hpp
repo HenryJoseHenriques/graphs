@@ -1,7 +1,3 @@
-//#include <iostream>
-#include "grafos_dirigidos_e_nao_dirigidos.hpp"
-//using namespace std;
-
 void walkDFS(int **matriz, int tam, bool *&visited, int v);
 void callDFS(int **matriz, int tam, bool *&visited);
 

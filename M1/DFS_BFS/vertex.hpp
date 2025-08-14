@@ -9,7 +9,7 @@ bool *initVisited(int tam)
     return visited;
 }
 
-void freeVisited(bool *&visited)
+void free(bool *&visited)
 {
     delete[] visited;
 }

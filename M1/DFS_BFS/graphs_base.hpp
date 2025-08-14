@@ -1,6 +1,3 @@
-//#include <iostream>
-//using namespace std;
-
 int **createMatrix(int tam);
 void freeMemory(int **matriz, int tam);
 void Directed(int **matriz, int tam);
@@ -22,7 +19,7 @@ int **createMatrix(int tam){
     return matriz;
 }
 
-void freeMemory(int **matriz, int tam){
+void free(int **matriz, int tam){
     for(int i = 0; i < tam;i++){
         delete [] matriz[i];
     }
