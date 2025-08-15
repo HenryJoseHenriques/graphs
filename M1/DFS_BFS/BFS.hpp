@@ -22,7 +22,6 @@ void walkBFS(int **matriz, int tam, bool *&visited, int v, queue<int> &nextVisit
             }
         }
     }
-    cout << endl;
 }
 
 void callBFS(int **matriz, int tam, bool *&visited, int v){
@@ -47,8 +46,10 @@ void callBFS(int **matriz, int tam, bool *&visited, int v){
                     break;
                 }
             }
-            if (temAresta)
+            if (temAresta){
+                cout << "->";
                 walkBFS(matriz,tam,visited,i,nextVisited);
+            }
         }
     }
 }

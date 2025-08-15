@@ -57,6 +57,7 @@ int main()
             callBFS(matriz, tam, visited, v);
             free(visited);
 
+            cout << endl;            
             pauseScreen();
 
             free(matriz, tam);
@@ -65,7 +66,7 @@ int main()
             if (tam <= 0)
             {
                 clearScreen();
-                cout << "Tamanho da matriz nao definido. Retorno e preenchar primeiro.\n";
+                cout << "Tamanho da matriz nao definido. Retorne, defina o tamaho da matrize e a preencha primeiro.\n";
                 pauseScreen();
             }
             else
@@ -74,7 +75,7 @@ int main()
 
                 cout << "Digite o vertice que deseje pesquisar: \n";
                 cin >> pesquisa;
-                if (pesquisa <= 0 || pesquisa >= tam)
+                if (pesquisa <= 0 || pesquisa > tam)
                 {
                     clearScreen();
                     cout << "O vertice " << pesquisa << " NAO foi localizado no grafo.\n";

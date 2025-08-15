@@ -36,8 +36,10 @@ void callDFS(int **matriz, int tam, bool *&visited, int v)
                     break;
                 }
             }
-            if (temAresta)
+            if (temAresta){
+                cout << "->";
                 walkDFS(matriz, tam, visited, i);
+            }
         }
     }
 }

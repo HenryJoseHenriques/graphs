@@ -50,7 +50,6 @@ void Directed(int **matriz, int tam)
         j = j - 1;
 
         matriz[i][j] = 1;
-        matriz[j][i] = 1;
     }
 }
 
@@ -73,21 +72,29 @@ void NoDirected(int **matriz, int tam)
         j = j - 1;
 
         matriz[i][j] = 1;
+        matriz[j][i] = 1;
     }
 }
 
 void printMatrix(int **matriz, int tam)
 {
+    cout << "\t"; 
+    for (int j = 0; j < tam; j++)
+        cout << j + 1 << "\t";
+    cout << "\n";
+
     for (int i = 0; i < tam; i++)
     {
+        cout << i + 1 << ":\t";
         for (int j = 0; j < tam; j++)
         {
-            cout << matriz[i][j] << " ";
+            cout << matriz[i][j] << "\t";
         }
         cout << "\n";
     }
     cout << endl;
 }
+
 
 void fillMatrix(int **matriz, int tam)
 {
