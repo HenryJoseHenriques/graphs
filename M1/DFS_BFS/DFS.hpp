@@ -14,11 +14,8 @@ void walkDFS(int **matriz, int tam, bool *&visited, int v)
     }
 }
 
-void callDFS(int **matriz, int tam, bool *&visited)
+void callDFS(int **matriz, int tam, bool *&visited, int v)
 {
-    int v;
-    cout << "\nEscolha um vertice para dar inicio ao caminho:(-1 ou menor para sair)\n";
-    cin >> v;
     if (v <= -1)
         return;
     if (v > 0)
