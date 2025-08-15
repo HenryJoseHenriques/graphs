@@ -8,6 +8,7 @@ using namespace std;
 int main()
 {
     int **matriz;
+    bool *visited;
     int tam;
     cout << "\nEscreva o tamanho da matriz:\n";
     cin >> tam;
@@ -16,12 +17,15 @@ int main()
     fillMatrix(matriz,tam);
     printMatrix(matriz,tam);
 
-    bool *visited = initVisited(tam);
-    int v;
+    visited = initVisited(tam);
     callDFS(matriz,tam, visited);
     free(visited);
 
+    cout << endl;
 
+    visited = initVisited(tam);
+    callBFS(matriz,tam,visited);
+    free(visited);
 
     free(matriz,tam);
     return 0;
