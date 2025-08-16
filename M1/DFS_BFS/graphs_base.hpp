@@ -3,6 +3,7 @@ void freeMemory(int **matriz, int tam);
 void Directed(int **matriz, int tam);
 void NoDirected(int **matriz, int tam);
 void printMatrix(int **matriz, int tam);
+bool verifyMatrixZero(int **matriz, int tam);
 void fillMatrix(int **matriz, int tam);
 
 int **createMatrix(int tam)
@@ -95,6 +96,16 @@ void printMatrix(int **matriz, int tam)
     cout << endl;
 }
 
+bool verifyMatrixZero(int **matriz, int tam){
+    for(int i = 0; i < tam; i++){
+        for(int j = 0; j < tam; j++){
+            if(matriz[i][j] != 0){
+                return false;
+            }
+        }
+    }
+    return true;
+}
 
 void fillMatrix(int **matriz, int tam)
 {

@@ -17,7 +17,8 @@ int main()
         cout << "\t\tMENU:\n";
         cout << "1 - Preecher matriz\n";
         cout << "2 - Pesquisar vertice\n";
-        cout << "3 - sair\n";
+        cout << "3 - Creditos\n";
+        cout << "4 - Sair\n";
         cout << "Escolha: ";
         cin >> escolha;
         switch (escolha)
@@ -29,50 +30,57 @@ int main()
             matriz = createMatrix(tam);
 
             fillMatrix(matriz, tam);
-            printMatrix(matriz, tam);
-            pauseScreen();
-            do
+            if (verifyMatrixZero(matriz, tam))
             {
                 clearScreen();
-                cout << "\nEscolha um vertice para dar inicio ao caminho:(-1 ou menor para sair)\n";
-                cin >> v;
-                if (v <= 0 || v >= tam)
+                cout << "Matriz nula. Volte e preecha a matriz.\n";
+                pauseScreen();
+            }
+            else
+            {
+                printMatrix(matriz, tam);
+                pauseScreen();
+                do
                 {
-                    cout << "O vertice escolhido esta fora dos limites da matriz. Tente novamente.\n";
-                    pauseScreen();
-                }
-            } while (v <= 0 || v >= tam);
+                    clearScreen();
+                    cout << "\nEscolha um vertice para dar inicio ao caminho:(-1 ou menor para sair)\n";
+                    cin >> v;
+                    if (v <= 0 || v >= tam)
+                    {
+                        cout << "O vertice escolhido esta fora dos limites da matriz. Tente novamente.\n";
+                        pauseScreen();
+                    }
+                } while (v <= 0 || v >= tam);
 
-            // clearScreen();
-            cout << "\t\tMatriz:\n";
-            printMatrix(matriz, tam);
+                cout << "\t\tMatriz:\n";
+                printMatrix(matriz, tam);
 
-            visited = initVisited(tam);
-            callDFS(matriz, tam, visited, v);
-            free(visited);
+                visited = initVisited(tam);
+                callDFS(matriz, tam, visited, v);
+                free(visited);
 
-            cout << endl;
+                cout << endl;
 
-            visited = initVisited(tam);
-            callBFS(matriz, tam, visited, v);
-            free(visited);
+                visited = initVisited(tam);
+                callBFS(matriz, tam, visited, v);
+                free(visited);
 
-            cout << endl;            
-            pauseScreen();
+                cout << endl;
+                pauseScreen();
 
-            free(matriz, tam);
+                free(matriz, tam);
+            }
             break;
         case 2:
             if (tam <= 0)
             {
                 clearScreen();
-                cout << "Tamanho da matriz nao definido. Retorne, defina o tamaho da matrize e a preencha primeiro.\n";
+                cout << "Tamanho da matriz nao definido. Retorne, defina o tamaho da matriz e a preencha primeiro.\n";
                 pauseScreen();
             }
             else
             {
                 int pesquisa;
-
                 cout << "Digite o vertice que deseje pesquisar: \n";
                 cin >> pesquisa;
                 if (pesquisa <= 0 || pesquisa > tam)
@@ -91,6 +99,15 @@ int main()
             break;
         case 3:
             clearScreen();
+            cout << "Universidade do Vale do Itajai\n";
+            cout << "Engenharia de computacao\n";
+            cout << "Academicos: Henry Jose, Ian Marcos, Vinícius Tridapalli\n";
+            cout << "Disciplina: grafos\n";
+            cout << "Professor: Rudimar Luis\n";
+            pauseScreen();
+            break;
+        case 4:
+            clearScreen();
             cout << "Saindo...Tenha um otimo dia.\n";
             break;
         default:
@@ -99,6 +116,6 @@ int main()
             pauseScreen();
             break;
         }
-    } while (escolha != 3);
+    } while (escolha != 4);
     return 0;
 }
