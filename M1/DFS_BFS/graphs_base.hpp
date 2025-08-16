@@ -49,8 +49,8 @@ void Directed(int **matriz, int tam)
         if (j <= -1)
             break;
         j = j - 1;
-
         matriz[i][j] = 1;
+        clearScreen();
     }
 }
 
@@ -74,6 +74,7 @@ void NoDirected(int **matriz, int tam)
 
         matriz[i][j] = 1;
         matriz[j][i] = 1;
+        clearScreen();
     }
 }
 
@@ -125,10 +126,12 @@ void fillMatrix(int **matriz, int tam)
         }
         else if (respodrg == 'S')
         {
+            clearScreen();
             Directed(matriz, tam);
         }
         else if (respodrg == 'N')
         {
+            clearScreen();
             NoDirected(matriz, tam);
         }
     } while (respodrg != 'S' && respodrg != 'N');
