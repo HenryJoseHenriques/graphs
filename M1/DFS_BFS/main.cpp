@@ -24,9 +24,16 @@ int main()
         switch (escolha)
         {
         case 1:
-            clearScreen();
-            cout << "\nEscreva o tamanho da matriz:\n";
-            cin >> tam;
+            do
+            {
+                clearScreen();
+                cout << "\nEscreva o tamanho da matriz:\n";
+                cin >> tam;
+                if(tam <= 0){
+                    cout << "Tamanho nao aceito. Tente novamente.\n";
+                    pauseScreen();
+                }
+            } while (tam <= 0);
             matriz = createMatrix(tam);
 
             fillMatrix(matriz, tam);
@@ -81,7 +88,7 @@ int main()
             else
             {
                 int pesquisa;
-                cout << "Digite o vertice que deseje pesquisar: \n";
+                cout << "Digite o vertice que deseja pesquisar: \n";
                 cin >> pesquisa;
                 if (pesquisa <= 0 || pesquisa > tam)
                 {
@@ -99,10 +106,10 @@ int main()
             break;
         case 3:
             clearScreen();
-            cout << "Universidade do Vale do Itajai\n";
-            cout << "Engenharia de computacao\n";
-            cout << "Academicos: Henry Jose, Ian Marcos, Vinícius Tridapalli\n";
-            cout << "Disciplina: grafos\n";
+            cout << "Universidade do Vale do Itajai - UNIVALI\n";
+            cout << "Engenharia de Computacao\n";
+            cout << "Academicos: Henry Jose, Ian Marcos e Vinicius Tridapalli\n";
+            cout << "Disciplina: Grafos\n";
             cout << "Professor: Rudimar Luis\n";
             pauseScreen();
             break;
@@ -112,7 +119,7 @@ int main()
             break;
         default:
             clearScreen();
-            cout << "Escolha nao aceita. Tente novamente.\n";
+            cout << "Escolha nao aceita. Tente novamente ou reinicie o programa.\n";
             pauseScreen();
             break;
         }
