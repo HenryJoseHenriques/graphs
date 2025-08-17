@@ -108,7 +108,7 @@ bool verifyMatrixZero(int **matriz, int tam){
     return true;
 }
 
-void fillMatrix(int **matriz, int tam)
+void fillMatrix(int **matriz, int tam, bool &isDirected)
 {
     char respodrg;
     do
@@ -127,11 +127,13 @@ void fillMatrix(int **matriz, int tam)
         else if (respodrg == 'S')
         {
             clearScreen();
+            isDirected = true;
             Directed(matriz, tam);
         }
         else if (respodrg == 'N')
         {
             clearScreen();
+            isDirected = false;
             NoDirected(matriz, tam);
         }
     } while (respodrg != 'S' && respodrg != 'N');

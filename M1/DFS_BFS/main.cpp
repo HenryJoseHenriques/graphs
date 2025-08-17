@@ -9,7 +9,7 @@ using namespace std;
 int main()
 {
     int **matriz;
-    bool *visited;
+    bool *visited, isDirected;
     int v, escolha, tam = 0;
     do
     {
@@ -35,8 +35,8 @@ int main()
                 }
             } while (tam <= 0);
             matriz = createMatrix(tam);
+            fillMatrix(matriz, tam, isDirected);
 
-            fillMatrix(matriz, tam);
             if (verifyMatrixZero(matriz, tam))
             {
                 clearScreen();
@@ -63,13 +63,13 @@ int main()
                 printMatrix(matriz, tam);
 
                 visited = initVisited(tam);
-                callDFS(matriz, tam, visited, v);
+                callDFS(matriz, tam, visited, v, isDirected);
                 free(visited);
 
                 cout << endl;
 
                 visited = initVisited(tam);
-                callBFS(matriz, tam, visited, v);
+                callBFS(matriz, tam, visited, v, isDirected);
                 free(visited);
 
                 cout << endl;
