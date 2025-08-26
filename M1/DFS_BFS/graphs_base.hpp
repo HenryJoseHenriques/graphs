@@ -6,6 +6,13 @@ void printMatrix(int **matriz, int tam);
 bool verifyMatrixZero(int **matriz, int tam);
 void fillMatrix(int **matriz, int tam);
 
+void searchVertex(int **matriz, int tam, int i, int j);
+
+void addVertex(int **matriz, int tam, int i, int j, bool isDirected);
+void rmvVertex(int **matriz, int tam, int i, int j, bool isDirected);
+void addEdge(int **matriz, int tam, int i, int j, bool isDirected);
+void rmvEdge(int **matriz, int tam, int i, int j, bool isDirected);
+
 int **createMatrix(int tam)
 {
     int **matriz;
