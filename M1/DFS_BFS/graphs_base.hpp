@@ -66,7 +66,7 @@ void NoDirected(int **matriz, int tam)
     int i, j;
     while (true)
     {
-        //clearScreen();
+        // clearScreen();
         cout << "\nIndique a conexao desejada da linha.(-1 para finalizar)\n";
         cin >> i;
         if (i <= -1)
@@ -87,7 +87,7 @@ void NoDirected(int **matriz, int tam)
 
 void printMatrix(int **matriz, int tam)
 {
-    cout << "\t"; 
+    cout << "\t";
     for (int j = 0; j < tam; j++)
         cout << j + 1 << "\t";
     cout << "\n";
@@ -104,10 +104,14 @@ void printMatrix(int **matriz, int tam)
     cout << endl;
 }
 
-bool verifyMatrixZero(int **matriz, int tam){
-    for(int i = 0; i < tam; i++){
-        for(int j = 0; j < tam; j++){
-            if(matriz[i][j] != 0){
+bool verifyMatrixZero(int **matriz, int tam)
+{
+    for (int i = 0; i < tam; i++)
+    {
+        for (int j = 0; j < tam; j++)
+        {
+            if (matriz[i][j] != 0)
+            {
                 return false;
             }
         }
@@ -144,4 +148,56 @@ void fillMatrix(int **matriz, int tam, bool &isDirected)
             NoDirected(matriz, tam);
         }
     } while (respodrg != 'S' && respodrg != 'N');
+}
+
+void addVertex(int **matriz, int &tam, int k, bool isDirected)
+{
+    int newTam = tam+1;
+    int **newMatriz = createMatrix(newTam);
+    for (int i = 0; i < tam; i++)
+    {
+        for (int j = 0; j < tam; j++)
+        {
+            newMatriz[i][j] = matriz[i][j];
+        }
+    }
+    free(matriz,tam);
+    matriz = newMatriz;
+    tam = newTam;
+    if(isDirected)
+        Directed(matriz,tam);
+    else
+        NoDirected(matriz,tam);
+}       
+
+void rmvVertex(int **matriz, int tam, int k, bool isDirected)
+{
+    int newTam = tam-1;
+    int **newMatriz = createMatrix(newTam);
+    for (int i = 0; i < newTam; i++)
+    {
+        for (int j = 0; j < newTam; j++)
+        {
+            if(i != k){
+                newMatriz[i][j] = matriz[i][j];
+                if(!isDirected)
+                    newMatriz[j][i] = matriz[j][i];
+            }
+        }
+    }
+    free(matriz,tam);
+    matriz = newMatriz;
+    tam = newTam;
+}
+
+void addEdge(int **matriz, int tam, int i, int j, bool isDirected){
+    matriz[i][j] = 1;
+    if(!isDirected)
+        matriz[j][i] = 1;
+}
+
+void rmvEdge(int **matriz, int tam, int i, int j, bool isDirected){
+    matriz[i][j] = 0;
+    if(!isDirected)
+        matriz[j][i] = 0;
 }
