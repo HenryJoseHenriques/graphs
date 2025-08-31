@@ -5,20 +5,24 @@ using namespace std;
 #include "vertex.hpp"
 #include "DFS.hpp"
 #include "BFS.hpp"
+#include "FTDeI.hpp"
+#include "connection.hpp"
 
 int main()
 {
     int **matriz;
-    bool *visited, isDirected;
+    bool *visited, *connect, isDirected;
     int v, escolha, tam = 0;
     do
     {
         clearScreen();
         cout << "\t\tMENU:\n";
         cout << "1 - Preecher matriz\n";
-        cout << "2 - Pesquisar vertice\n";
-        cout << "3 - Creditos\n";
-        cout << "4 - Sair\n";
+        cout << "2 - Operacoes\n";
+        cout << "3 - Verificar Transitividade\n";
+        cout << "4 - Conecoes\n";
+        cout << "5 - Creditos\n";
+        cout << "6 - Sair\n";
         cout << "Escolha: ";
         cin >> escolha;
         switch (escolha)
@@ -29,7 +33,8 @@ int main()
                 clearScreen();
                 cout << "\nEscreva o tamanho da matriz:\n";
                 cin >> tam;
-                if(tam <= 0){
+                if (tam <= 0)
+                {
                     cout << "Tamanho nao aceito. Tente novamente.\n";
                     pauseScreen();
                 }
@@ -45,6 +50,7 @@ int main()
             }
             else
             {
+                bool *visited = initVisited(tam);
                 printMatrix(matriz, tam);
                 pauseScreen();
                 do
@@ -52,16 +58,17 @@ int main()
                     clearScreen();
                     cout << "\nEscolha um vertice para dar inicio ao caminho:(-1 ou menor para sair)\n";
                     cin >> v;
-                    if (v <= 0 || v >= tam)
+                    if (v <= 0 || v > tam)
                     {
                         cout << "O vertice escolhido esta fora dos limites da matriz. Tente novamente.\n";
                         pauseScreen();
                     }
-                } while (v <= 0 || v >= tam);
+                } while (v <= 0 || v > tam);
 
                 cout << "\t\tMatriz:\n";
                 printMatrix(matriz, tam);
 
+                connect = initVisited(tam);
                 visited = initVisited(tam);
                 callDFS(matriz, tam, visited, v, isDirected);
                 free(visited);
@@ -70,12 +77,11 @@ int main()
 
                 visited = initVisited(tam);
                 callBFS(matriz, tam, visited, v, isDirected);
+                connect = copy(visited, tam);
                 free(visited);
 
                 cout << endl;
                 pauseScreen();
-
-                free(matriz, tam);
             }
             break;
         case 2:
@@ -87,24 +93,40 @@ int main()
             }
             else
             {
-                int pesquisa;
-                cout << "Digite o vertice que deseja pesquisar: \n";
-                cin >> pesquisa;
-                if (pesquisa <= 0 || pesquisa > tam)
-                {
-                    clearScreen();
-                    cout << "O vertice " << pesquisa << " NAO foi localizado no grafo.\n";
-                    pauseScreen();
-                }
-                else
-                {
-                    clearScreen();
-                    cout << "O vertice " << pesquisa << " existe no grafo.\n";
-                    pauseScreen();
-                }
+                clearScreen();
+                operation(matriz,tam,isDirected);
+                pauseScreen();
             }
             break;
         case 3:
+            clearScreen();
+            if (tam <= 0)
+            {
+                clearScreen();
+                cout << "Tamanho da matriz nao definido. Retorne, defina o tamaho da matriz e a preencha primeiro.\n";
+                pauseScreen();
+            }
+            else
+            {
+                callTCDeI(matriz, tam);
+                pauseScreen();
+            }
+            break;
+        case 4:
+            clearScreen();
+            if (tam <= 0)
+            {
+                clearScreen();
+                cout << "Tamanho da matriz nao definido. Retorne, defina o tamaho da matriz e a preencha primeiro.\n";
+                pauseScreen();
+            }
+            else
+            {
+                connections(matriz, tam, connect, isDirected);
+                pauseScreen();
+            }
+            break;
+        case 5:
             clearScreen();
             cout << "Universidade do Vale do Itajai - UNIVALI\n";
             cout << "Engenharia de Computacao\n";
@@ -113,16 +135,14 @@ int main()
             cout << "Professor: Rudimar Luis\n";
             pauseScreen();
             break;
-        case 4:
+        default:
+        case 6:
             clearScreen();
             cout << "Saindo...Tenha um otimo dia.\n";
             break;
-        default:
-            clearScreen();
-            cout << "Escolha nao aceita. Tente novamente ou reinicie o programa.\n";
-            pauseScreen();
-            break;
         }
-    } while (escolha != 4);
+    } while (escolha != 6);
+    free(connect);
+    free(matriz, tam);
     return 0;
 }

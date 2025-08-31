@@ -3,7 +3,7 @@
 void walkBFS(int **matriz, int tam, bool *&visited, int v);
 void callBFS(int **matriz, int tam, bool *&visited);
 
-void walkBFS(int **matriz, int tam, bool *&visited, int v, queue<int> &nextVisited, bool isDirected)
+void walkBFS(int **matriz, int tam, bool *&visited, int v, queue<int> &nextVisited, bool isDirected, bool conection=true)
 {
     insertQueue(nextVisited, v);
     visited[v] = true;
@@ -37,6 +37,7 @@ void walkBFS(int **matriz, int tam, bool *&visited, int v, queue<int> &nextVisit
             }
         }
     }
+    if(!conection) cout << "\n";
 }
 
 void callBFS(int **matriz, int tam, bool *&visited, int v, bool isDirected)

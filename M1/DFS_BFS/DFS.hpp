@@ -18,7 +18,7 @@ void walkDFS(int **matriz, int tam, bool *&visited, int v, bool isDirected)
             {
                 cout << "--";
             }
-            walkDFS(matriz, tam, visited, k,isDirected);
+            walkDFS(matriz, tam, visited, k, isDirected);
         }
     }
 }
@@ -31,7 +31,7 @@ void callDFS(int **matriz, int tam, bool *&visited, int v, bool isDirected)
         v--;
 
     cout << "Depth-First-Search:";
-    walkDFS(matriz, tam, visited, v,isDirected);
+    walkDFS(matriz, tam, visited, v, isDirected);
     for (int i = 0; i < tam; i++)
     {
         if (!visited[i])
@@ -55,7 +55,7 @@ void callDFS(int **matriz, int tam, bool *&visited, int v, bool isDirected)
                 {
                     cout << "--";
                 }
-                walkDFS(matriz, tam, visited, i,isDirected);
+                walkDFS(matriz, tam, visited, i, isDirected);
             }
         }
     }
