@@ -127,7 +127,7 @@ void callTCDeI(int **matriz, int tam)
     int start;
     char resposta;
 
-    cout << "Digite o vertice que deseja visualizar o fecho transtivo:\n ";
+    cout << "Digite o vertice que deseja visualizar o fecho transtivo:\n";
     cin >> start;
     if (start <= -1)
         return;

@@ -1,28 +1,29 @@
 #include <iostream>
 using namespace std;
 #include "screen.hpp"
-#include "graphs_base.hpp"
 #include "vertex.hpp"
 #include "DFS.hpp"
 #include "BFS.hpp"
+#include "graphs_base.hpp"
 #include "FTDeI.hpp"
 #include "connection.hpp"
 
 int main()
 {
     int **matriz;
-    bool *visited, *connect, isDirected;
+    bool *visited, isDirected;
     int v, escolha, tam = 0;
     do
     {
         clearScreen();
         cout << "\t\tMENU:\n";
         cout << "1 - Preecher matriz\n";
-        cout << "2 - Operacoes\n";
-        cout << "3 - Verificar Transitividade\n";
-        cout << "4 - Conecoes\n";
-        cout << "5 - Creditos\n";
-        cout << "6 - Sair\n";
+        cout << "2 - Visualizar matriz\n";
+        cout << "3 - Operacoes\n";
+        cout << "4 - Verificar Transitividade\n";
+        cout << "5 - Conecoes\n";
+        cout << "6 - Creditos\n";
+        cout << "7 - Sair\n";
         cout << "Escolha: ";
         cin >> escolha;
         switch (escolha)
@@ -68,16 +69,14 @@ int main()
                 cout << "\t\tMatriz:\n";
                 printMatrix(matriz, tam);
 
-                connect = initVisited(tam);
                 visited = initVisited(tam);
                 callDFS(matriz, tam, visited, v, isDirected);
-                free(visited);
+                (visited);
 
                 cout << endl;
 
                 visited = initVisited(tam);
                 callBFS(matriz, tam, visited, v, isDirected);
-                connect = copy(visited, tam);
                 free(visited);
 
                 cout << endl;
@@ -94,12 +93,11 @@ int main()
             else
             {
                 clearScreen();
-                operation(matriz,tam,isDirected);
+                printMatrix(matriz, tam);
                 pauseScreen();
             }
             break;
         case 3:
-            clearScreen();
             if (tam <= 0)
             {
                 clearScreen();
@@ -108,7 +106,8 @@ int main()
             }
             else
             {
-                callTCDeI(matriz, tam);
+                clearScreen();
+                operation(matriz, tam, isDirected);
                 pauseScreen();
             }
             break;
@@ -122,11 +121,38 @@ int main()
             }
             else
             {
-                connections(matriz, tam, connect, isDirected);
+                callTCDeI(matriz, tam);
                 pauseScreen();
             }
             break;
         case 5:
+            clearScreen();
+            if (tam <= 0)
+            {
+                clearScreen();
+                cout << "Tamanho da matriz nao definido. Retorne, defina o tamaho da matriz e a preencha primeiro.\n";
+                pauseScreen();
+            }
+            else
+            {
+                do
+                {
+                    clearScreen();
+                    cout << "\nEscolha um vertice para dar inicio ao caminho:(-1 ou menor para sair)\n";
+                    cin >> v;
+                    if (v <= 0 || v > tam)
+                    {
+                        cout << "O vertice escolhido esta fora dos limites da matriz. Tente novamente.\n";
+                        pauseScreen();
+                    }
+                } while (v <= 0 || v > tam);
+                visited = initVisited(tam);
+                checkConexidade(matriz,tam);
+                free(visited);
+                pauseScreen();
+            }
+            break;
+        case 6:
             clearScreen();
             cout << "Universidade do Vale do Itajai - UNIVALI\n";
             cout << "Engenharia de Computacao\n";
@@ -136,13 +162,12 @@ int main()
             pauseScreen();
             break;
         default:
-        case 6:
+        case 7:
             clearScreen();
             cout << "Saindo...Tenha um otimo dia.\n";
             break;
         }
-    } while (escolha != 6);
-    free(connect);
+    } while (escolha != 7);
     free(matriz, tam);
     return 0;
 }
